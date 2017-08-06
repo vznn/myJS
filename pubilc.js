@@ -472,7 +472,7 @@ function randomNumber(n1, n2) {
 function randomColor() {
     //randomNumber是上面定义的函数
     //写法1
-    return 'rgb(' + randomNumber(255) + ',' + randomNumber(255) + ',' + randomNumber(255) + ')';
+    return 'rgb(' + randomNumberjiu(255) + ',' + randomNumber(255) + ',' + randomNumber(255) + ')';
     //写法2
     return '#' + Math.random().toString(16).substring(2).substr(0, 6);
     //写法3
@@ -534,3 +534,19 @@ function getFontSize() {
 // }
 //这样的设置，比如在屏幕宽度大于等于750px设备上，1rem=100px；图片显示就是宽高都是100px
 //比如在iphone6(屏幕宽度：375)上，375/750*100=50px;就是1rem=50px;图片显示就是宽高都是50px;
+
+
+
+/* 时间转换*/
+
+
+
+
+
+
+
+
+
+
+/* URL编码*/
+
