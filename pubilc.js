@@ -39,14 +39,12 @@ function changeCase(str, type) {
     function ToggleCase(str) {
         var itemText = ""
         str.split("").forEach(
-            function (item) {
+            function(item) {
                 if (/^([a-z]+)/.test(item)) {
                     itemText += item.toUpperCase();
-                }
-                else if (/^([A-Z]+)/.test(item)) {
+                } else if (/^([A-Z]+)/.test(item)) {
                     itemText += item.toLowerCase();
-                }
-                else {
+                } else {
                     itemText += item;
                 }
             });
@@ -55,11 +53,11 @@ function changeCase(str, type) {
 
     switch (type) {
         case 1:
-            return str.replace(/^(\w)(\w+)/, function (v, v1, v2) {
+            return str.replace(/^(\w)(\w+)/, function(v, v1, v2) {
                 return v1.toUpperCase() + v2.toLowerCase();
             });
         case 2:
-            return str.replace(/^(\w)(\w+)/, function (v, v1, v2) {
+            return str.replace(/^(\w)(\w+)/, function(v, v1, v2) {
                 return v1.toLowerCase() + v2.toUpperCase();
             });
         case 3:
@@ -95,7 +93,9 @@ function replaceAll(str, AFindText, ARepText) {
 /*替换*/
 //replaceStr(字符串,字符格式, 替换方式,替换的字符（默认*）)
 function replaceStr(str, regArr, type, ARepText) {
-    var regtext = '', Reg = null, replaceText = ARepText || '*';
+    var regtext = '',
+        Reg = null,
+        replaceText = ARepText || '*';
     //replaceStr('18819322663',[3,5,3],0)
     //188*****663
     //repeatStr是在上面定义过的（字符串循环复制），大家注意哦
@@ -155,7 +155,7 @@ function checkType(str, type) {
             return /^[a-z]+$/.test(str);
         case 'upper':
             return /^[A-Z]+$/.test(str);
-        default :
+        default:
             return true;
     }
 }
@@ -167,24 +167,19 @@ function checkPwd(str) {
     var nowLv = 0;
     if (str.length < 6) {
         return nowLv
-    }
-    ;
+    };
     if (/[0-9]/.test(str)) {
         nowLv++
-    }
-    ;
+    };
     if (/[a-z]/.test(str)) {
         nowLv++
-    }
-    ;
+    };
     if (/[A-Z]/.test(str)) {
         nowLv++
-    }
-    ;
+    };
     if (/[\.|-|_]/.test(str)) {
         nowLv++
-    }
-    ;
+    };
     return nowLv;
 }
 
@@ -207,8 +202,8 @@ function countStr(str, strSplit) {
     return str.split(strSplit).length - 1
 }
 var strTest = 'sad44654blog5a1sd67as9dablog4s5d16zxc4sdweasjkblogwqepaskdkblogahseiuadbhjcibloguyeajzxkcabloguyiwezxc967'
-//countStr(strTest,'blog')
-//6
+    //countStr(strTest,'blog')
+    //6
 
 
 /*数组去重*/
@@ -226,7 +221,7 @@ function removeRepeatArray(arr) {
 
 /*数组顺序打乱*/
 function upsetArr(arr) {
-    return arr.sort(function () {
+    return arr.sort(function() {
         return Math.random() - 0.5
     });
 }
@@ -236,6 +231,7 @@ function upsetArr(arr) {
 function maxArr(arr) {
     return Math.max.apply(null, arr);
 }
+
 function minArr(arr) {
     return Math.min.apply(null, arr);
 }
@@ -290,23 +286,26 @@ function getEleCount(obj, ele) {
 /*返回数组（字符串）出现最多的几次元素和出现次数*/
 //arr, rank->长度，默认为数组长度，ranktype，排序方式，默认降序
 function getCount(arr, rank, ranktype) {
-    var obj = {}, k, arr1 = []
-    //记录每一元素出现的次数
+    var obj = {},
+        k, arr1 = []
+        //记录每一元素出现的次数
     for (var i = 0, len = arr.length; i < len; i++) {
         k = arr[i];
         if (obj[k]) {
             obj[k]++;
-        }
-        else {
+        } else {
             obj[k] = 1;
         }
     }
     //保存结果{el-'元素'，count-出现次数}
     for (var o in obj) {
-        arr1.push({el: o, count: obj[o]});
+        arr1.push({
+            el: o,
+            count: obj[o]
+        });
     }
     //排序（降序）
-    arr1.sort(function (n1, n2) {
+    arr1.sort(function(n1, n2) {
         return n2.count - n1.count
     });
     //如果ranktype为1，则为升序，反转数组
@@ -324,7 +323,8 @@ function getCount(arr, rank, ranktype) {
 //getArrayNum([0,1,2,3,4,5,6,7,8,9],2) 不传第二个参数,默认返回从n1到数组结束的元素
 //[2, 3, 4, 5, 6, 7, 8, 9]
 function getArrayNum(arr, n1, n2) {
-    var arr1 = [], len = n2 || arr.length - 1;
+    var arr1 = [],
+        len = n2 || arr.length - 1;
     for (var i = n1; i <= len; i++) {
         arr1.push(arr[i])
     }
@@ -338,7 +338,7 @@ function getArrayNum(arr, n1, n2) {
 //removeArrayForValue(['test','test1','test2','test','aaa'],'test')
 //["test1", "test2", "aaa"]  //数组元素的值全等于'test'才被删除
 function removeArrayForValue(arr, val, type) {
-    arr.filter(function (item) {
+    arr.filter(function(item) {
         return type === '%' ? item.indexOf(val) !== -1 : item !== val
     })
 }
@@ -392,7 +392,10 @@ function removeCookie(name) {
 function upDigit(n) {
     var fraction = ['角', '分', '厘'];
     var digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
-    var unit = [['元', '万', '亿'], ['', '拾', '佰', '仟']];
+    var unit = [
+        ['元', '万', '亿'],
+        ['', '拾', '佰', '仟']
+    ];
     var head = n < 0 ? '欠人民币' : '人民币';
     n = Math.abs(n);
     var s = '';
@@ -445,37 +448,37 @@ function upDigit(n) {
 
 
 /*随机返回一个范围的数字*/
-function randomNumber(n1,n2){
+function randomNumber(n1, n2) {
     //randomNumber(5,10)
     //返回5-10的随机整数，包括5，10
-    if(arguments.length===2){
-        return Math.round(n1+Math.random()*(n2-n1));
+    if (arguments.length === 2) {
+        return Math.round(n1 + Math.random() * (n2 - n1));
     }
     //randomNumber(10)
     //返回0-10的随机整数，包括0，10
-    else if(arguments.length===1){
-        return Math.round(Math.random()*n1)
+    else if (arguments.length === 1) {
+        return Math.round(Math.random() * n1)
     }
     //randomNumber()
     //返回0-255的随机整数，包括0，255
-    else{
-        return Math.round(Math.random()*255)
+    else {
+        return Math.round(Math.random() * 255)
     }
 }
 
 /*随进产生颜色*/
 //这种写法，偶尔会有问题。大家得注意哦
 //Math.floor(Math.random()*0xffffff).toString(16);
-function randomColor(){
+function randomColor() {
     //randomNumber是上面定义的函数
     //写法1
     return 'rgb(' + randomNumber(255) + ',' + randomNumber(255) + ',' + randomNumber(255) + ')';
     //写法2
-    return '#'+Math.random().toString(16).substring(2).substr(0,6);
+    return '#' + Math.random().toString(16).substring(2).substr(0, 6);
     //写法3
-    var color='#';
-    for(var i=0;i<6;i++){
-        color+='0123456789abcdef'[randomNumber(15)];
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += '0123456789abcdef' [randomNumber(15)];
     }
     return color;
 }
@@ -484,31 +487,37 @@ function randomColor(){
 //到某一个时间的倒计时
 //getEndTime('2017/7/22 16:0:0')
 //"剩余时间6天 2小时 28 分钟20 秒"
-function getEndTime(endTime){
-    var startDate=new Date();  //开始时间，当前时间
-    var endDate=new Date(endTime); //结束时间，需传入时间参数
-    var t=endDate.getTime()-startDate.getTime();  //时间差的毫秒数
-    var d=0,h=0,m=0,s=0;
-    if(t>=0){
-        d=Math.floor(t/1000/3600/24);
-        h=Math.floor(t/1000/60/60%24);
-        m=Math.floor(t/1000/60%60);
-        s=Math.floor(t/1000%60);
+function getEndTime(endTime) {
+    var startDate = new Date(); //开始时间，当前时间
+    var endDate = new Date(endTime); //结束时间，需传入时间参数
+    var t = endDate.getTime() - startDate.getTime(); //时间差的毫秒数
+    var d = 0,
+        h = 0,
+        m = 0,
+        s = 0;
+    if (t >= 0) {
+        d = Math.floor(t / 1000 / 3600 / 24);
+        h = Math.floor(t / 1000 / 60 / 60 % 24);
+        m = Math.floor(t / 1000 / 60 % 60);
+        s = Math.floor(t / 1000 % 60);
     }
-    return "剩余时间"+d+"天 "+h+"小时 "+m+" 分钟"+s+" 秒";
+    return "剩余时间" + d + "天 " + h + "小时 " + m + " 分钟" + s + " 秒";
 }
 
 /*适配rem*/
 //这个适配的方法很多，我就写我自己用的方法。大家也可以去我回答过得一个问题那里看更详细的说明！移动端适配问题
-function getFontSize(){
-    var doc=document,win=window;
+function getFontSize() {
+    var doc = document,
+        win = window;
     var docEl = doc.documentElement,
         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-        recalc = function () {
+        recalc = function() {
             var clientWidth = docEl.clientWidth;
             if (!clientWidth) return;
             //如果屏幕大于750（750是根据我效果图设置的，具体数值参考效果图），就设置clientWidth=750，防止font-size会超过100px
-            if(clientWidth>750){clientWidth=750}
+            if (clientWidth > 750) {
+                clientWidth = 750
+            }
             //设置根元素font-size大小
             docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
         };
@@ -525,12 +534,3 @@ function getFontSize(){
 // }
 //这样的设置，比如在屏幕宽度大于等于750px设备上，1rem=100px；图片显示就是宽高都是100px
 //比如在iphone6(屏幕宽度：375)上，375/750*100=50px;就是1rem=50px;图片显示就是宽高都是50px;
-
-
-
-
-
-
-
-
-
