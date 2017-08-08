@@ -537,7 +537,7 @@ function getFontSize() {
 
 
 
-/* 时间转换*/
+/* 时间转换，时间戳*/
 
 
 
@@ -548,5 +548,47 @@ function getFontSize() {
 
 
 
-/* URL编码*/
+/*
+URL 传递中文参数
+ */
+function GetZhongWen() {
+    var aa = window.location.href;
+    var oo = decodeURI(aa);
+    var _tit = decodeURI(GetQueryString('_tit'));
+}
+
+
+
+/*
+ 获取URL参数
+ */
+function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return (r[2]);
+    return 'null';
+}
+
+
+/*
+ 获取手机系统类型
+ */
+function getSystem() {
+    var appVersion = window.navigator.appVersion;   //客户端信息
+    if (appVersion.toLocaleLowerCase().indexOf("android") > -1) {
+        return "1";
+    }
+    if (appVersion.toLocaleLowerCase().indexOf("iphone") > -1) {
+        return "2";
+    }
+    if (appVersion.toLocaleLowerCase().indexOf("windows") > -1) {
+        return "3";
+    }
+    return appVersion;
+}
+
+
+
+
+
 
